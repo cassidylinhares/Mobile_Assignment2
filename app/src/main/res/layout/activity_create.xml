@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="24dp"
-        android:hint="Address"
+        android:hint="@string/create_address_hint"
         android:inputType="text"/>
 
     <Button
@@ -24,7 +24,7 @@
         app:layout_constraintEnd_toStartOf="@id/create_AddButton"
         app:layout_constraintTop_toBottomOf="@id/create_addressEditText"
         android:layout_marginTop="24dp"
-        android:text="Back"
+        android:text="@string/back_btn"
         />
     <Button
         android:id="@+id/create_AddButton"
@@ -34,6 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/create_addressEditText"
         android:layout_marginTop="24dp"
-        android:text="Add Location"
+        android:text="@string/add_location_btn"
+        android:backgroundTint="@color/green"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

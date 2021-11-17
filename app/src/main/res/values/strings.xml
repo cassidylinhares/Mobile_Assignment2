@@ -1,6 +1,21 @@
 <resources>
+    <!--General-->
     <string name="app_name">Location Finder</string>
-    <string name="add_location_btn">Add Location</string>
-    <string name="create_location_btn">Create</string>
     <string name="back_btn">Back</string>
+
+    <!--Main Page-->
+    <string name="create_location_btn">Create</string>
+    <string name="search_hint">Search by address</string>
+
+    <!--Create Page-->
+    <string name="add_location_btn">Add Location</string>
+    <string name="create_address_hint">Address</string>
+
+    <!--Detail Page-->
+    <string name="save_location_btn">Save</string>
+    <string name="delete_location_btn">Delete</string>
+    <string name="longitude_label">Longitude:</string>
+    <string name="latitude_label">Latitude:</string>
+    <string name="address_label">Address:</string>
+
 </resources>

@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="15dp"
         android:layout_marginStart="15dp"
-        android:text="Back"/>
+        android:text="@string/back_btn"/>
 
     <!--    longitude-->
     <TextView
@@ -27,7 +27,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginStart="5dp"
         android:gravity="center_vertical"
-        android:text="Longitude: "
+        android:text="@string/longitude_label"
         android:textSize="15sp"
         android:textStyle="bold"/>
     <EditText
@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@id/loc_longitudeText"
         android:layout_marginTop="24dp"
         android:gravity="center_vertical"
-        android:text="Latitude: "
+        android:text="@string/latitude_label"
         android:textSize="15sp"
         android:textStyle="bold"/>
     <EditText
@@ -68,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@id/loc_latitudeText"
         android:layout_marginTop="24dp"
         android:gravity="center_vertical"
-        android:text="Address: "
+        android:text="@string/address_label"
         android:textSize="15sp"
         android:textStyle="bold"/>
     <EditText
@@ -87,7 +87,7 @@
         app:layout_constraintTop_toBottomOf="@id/loc_addressEdit"
         app:layout_constraintEnd_toStartOf="@id/loc_deleteButton"
         android:layout_marginTop="24dp"
-        android:text="Save"
+        android:text="@string/save_location_btn"
         android:backgroundTint="@color/green"/>
     <Button
         android:id="@+id/loc_deleteButton"
@@ -96,6 +96,6 @@
         app:layout_constraintStart_toEndOf="@+id/loc_saveButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/loc_saveButton"
-        android:text="Delete"
+        android:text="@string/delete_location_btn"
         android:backgroundTint="@color/red"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

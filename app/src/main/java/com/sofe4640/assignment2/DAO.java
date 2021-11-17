@@ -119,12 +119,9 @@ public class DAO extends SQLiteOpenHelper {
     public boolean delete(LocationModel locModel) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String query = "DELETE FROM " + LOCATION_TABLE + " WHERE " + ID_COL + " = " + locModel.getId();
+        int success = db.delete(LOCATION_TABLE, ID_COL+"=?", new String[]{String.valueOf(locModel.getId())});
 
-        Cursor cur = db.rawQuery(query, null);
-
-        boolean success = cur.moveToFirst() ? true : false;
         db.close();
-        return success;
+        return success != 0 ? true : false;
     }
 }

@@ -8,12 +8,14 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+//Model for location
 public class LocationModel {
     private int id;
     private String address;
     private double latitude;
     private double longitude;
 
+    //Constructor for existing location
     public LocationModel(int id, String address, double latitude, double longitude) {
         this.id = id;
         this.address = address;
@@ -21,10 +23,12 @@ public class LocationModel {
         this.longitude = longitude;
     }
 
+    //Constructor for non-existing location
     public LocationModel(String address) {
         this.address = address;
     }
 
+    //get & set the address when given a latitude and longiitude
     public void getAddressFromCoord(Context context) {
         try {
             Geocoder geocoder = new Geocoder(context, Locale.getDefault());
@@ -39,6 +43,7 @@ public class LocationModel {
         }
     }
 
+    //get & set the coordinates when given an address
     public void getCoordinates(Context context) {
         try {
             Geocoder geocoder = new Geocoder(context, Locale.getDefault());
@@ -65,7 +70,7 @@ public class LocationModel {
                 '}';
     }
 
-    //getter & setter
+    //getter & setters
     public int getId() {
         return id;
     }

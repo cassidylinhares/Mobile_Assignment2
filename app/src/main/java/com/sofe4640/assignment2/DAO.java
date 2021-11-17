@@ -22,6 +22,7 @@ public class DAO extends SQLiteOpenHelper {
         super(context, "location.db", null, 1);
     }
 
+    //runs once to create the db
     @Override
     public void onCreate(SQLiteDatabase db) {
         String creatStmt = "CREATE TABLE " + LOCATION_TABLE + " (" + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, " + ADDRESS_COL + " TEXT, " + LATITUDE_COL + " REAL, " + LONGITUDE_COL + " REAL)";
@@ -34,6 +35,7 @@ public class DAO extends SQLiteOpenHelper {
         //lol no
     }
 
+    //inserts a location into the db
     public boolean insert(LocationModel locModel) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -47,6 +49,7 @@ public class DAO extends SQLiteOpenHelper {
         return success != -1 ? true : false;
     }
 
+    //gets a list of search results from the db when user searches by address
     public List<LocationModel> searchAddress(String address) {
         List<LocationModel> allLocs = new ArrayList<>();
 
@@ -71,6 +74,7 @@ public class DAO extends SQLiteOpenHelper {
         return allLocs;
     }
 
+    //get all the locations
     public List<LocationModel> getAll() {
         List<LocationModel> allLocs = new ArrayList<>();
 
@@ -96,6 +100,7 @@ public class DAO extends SQLiteOpenHelper {
         return allLocs;
     }
 
+    //update a given location
     public LocationModel update(LocationModel locModel) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -110,6 +115,7 @@ public class DAO extends SQLiteOpenHelper {
         return locModel;
     }
 
+    //delete a location
     public boolean delete(LocationModel locModel) {
         SQLiteDatabase db = this.getWritableDatabase();
 

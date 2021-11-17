@@ -27,6 +27,7 @@ public class LocationActivity extends AppCompatActivity {
         backBtnHandler();
     }
 
+    //get the values from the location selected from list and turn it into a location type
     private void getSelectedLocation() {
         Intent selectedLoc = getIntent();
 
@@ -38,6 +39,7 @@ public class LocationActivity extends AppCompatActivity {
         location = new LocationModel(id, address, latitude, longitude);
     }
 
+    //initialize the ui views and set the text to be the location selected from list
     private void setView(LocationModel loc) {
         addrEdit = findViewById(R.id.loc_addressEdit);
         longEdit = findViewById(R.id.loc_longitudeEdit);
@@ -48,6 +50,7 @@ public class LocationActivity extends AppCompatActivity {
         latEdit.setText(String.valueOf(loc.getLatitude()));
     }
 
+    //back button to go back to main activity and destroy this activity
     private void backBtnHandler() {
         backBtn = findViewById(R.id.loc_backButton);
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +62,7 @@ public class LocationActivity extends AppCompatActivity {
         });
     }
 
+    //button to update any changes made
     private void saveBtnHandler() {
         saveBtn = findViewById(R.id.loc_saveButton);
         saveBtn.setOnClickListener(new View.OnClickListener() {
@@ -66,43 +70,59 @@ public class LocationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 DAO dbHandler = new DAO(LocationActivity.this);
 
+                //get form values
                 double longitude = Double.parseDouble(longEdit.getText().toString());
                 double latitude = Double.parseDouble(latEdit.getText().toString());
                 String address = addrEdit.getText().toString();
 
+                //check if either address has been changed or coordinates have been changed
                 if (!address.equalsIgnoreCase(location.getAddress())) {
                     location.setAddress(address);
-                    location.getCoordinates(LocationActivity.this);
+                    location.getCoordinates(LocationActivity.this); //update the address and coordinates to match
                     location.getAddressFromCoord(LocationActivity.this);
                 } else {
                     location.setLatitude(latitude);
                     location.setLongitude(longitude);
-                    location.getAddressFromCoord(LocationActivity.this);
+                    location.getAddressFromCoord(LocationActivity.this); //update the address and coordinates to match
                     location.getCoordinates(LocationActivity.this);
                 }
 
+                //update the db, ui, and tell user it updated
                 LocationModel updatedLoc = dbHandler.update(location);
-                setView(updatedLoc);
-                Toast.makeText(LocationActivity.this, "Updated & Saved", Toast.LENGTH_SHORT).show();
+                if(updatedLoc != null) {
+                    setView(updatedLoc);
+                    Toast.makeText(LocationActivity.this, "Updated & Saved", Toast.LENGTH_SHORT).show();
 
-                startActivity(new Intent(LocationActivity.this, MainActivity.class));
-                finish();
+                    //go back to main activity and destroy this one
+                    startActivity(new Intent(LocationActivity.this, MainActivity.class));
+                    finish();
+                } else {
+                    Toast.makeText(LocationActivity.this, "Error updating", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
+    //button to delete location
     private void deleteBtnHandler() {
         deleteBtn = findViewById(R.id.loc_deleteButton);
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //delete
                 DAO dbHandler = new DAO(LocationActivity.this);
-                dbHandler.delete(location);
+                boolean success = dbHandler.delete(location);
 
-                Toast.makeText(LocationActivity.this, "Deleted.", Toast.LENGTH_SHORT).show();
+                //check if error deleting
+                if(success) {
+                    Toast.makeText(LocationActivity.this, "Deleted.", Toast.LENGTH_SHORT).show();
 
-                startActivity(new Intent(LocationActivity.this, MainActivity.class));
-                finish();
+                    //go back to main activity and destroy this one if there's no delete error
+                    startActivity(new Intent(LocationActivity.this, MainActivity.class));
+                    finish();
+                } else {
+                    Toast.makeText(LocationActivity.this, "Error deleting", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

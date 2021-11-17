@@ -34,11 +34,20 @@ public class MainActivity extends AppCompatActivity {
         addLocation();
     }
 
+    //handles search bar
     private void searchHandler() {
         searchEdit = findViewById(R.id.searchSearchView);
         searchEdit.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
+            public boolean onQueryTextSubmit(String s) {
+                List<LocationModel> filteredList;
+                DAO dbHandler = new DAO(MainActivity.this);
+
+                //get search results from db
+                filteredList = dbHandler.searchAddress(s.toLowerCase());
+
+                //put the results into the list view on the ui
+                configListView(filteredList);
                 return false;
             }
 
@@ -47,25 +56,30 @@ public class MainActivity extends AppCompatActivity {
                 List<LocationModel> filteredList;
                 DAO dbHandler = new DAO(MainActivity.this);
 
+                //get search results from db
                 filteredList = dbHandler.searchAddress(s.toLowerCase());
 
+                //put the results into the list view on the ui
                 configListView(filteredList);
                 return false;
             }
         });
     }
 
+    //get all the data from the db
     private void getData() {
         DAO dbHandler = new DAO(MainActivity.this);
         locList = dbHandler.getAll();
     }
 
+    //make an array adapter and and set the list view to show what's in the array adapter
     private void configListView(List list) {
         listView = findViewById(R.id.resultsListView);
         adapter = new LocationAdapter(MainActivity.this, 0, list);
         listView.setAdapter(adapter);
     }
 
+    //handles when an item in the list is clicked; takes you to a detail view of the location
     private void listViewOnClickListener() {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -73,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 LocationModel selectedLoc = (LocationModel) listView.getItemAtPosition(position);
                 Intent detailActivity = new Intent(MainActivity.this, LocationActivity.class);
 
+                //make an intent and send the location clicked to the new activity
                 detailActivity.putExtra("id", selectedLoc.getId());
                 detailActivity.putExtra("address", selectedLoc.getAddress());
                 detailActivity.putExtra("longitude", selectedLoc.getLongitude());
@@ -84,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //button to go to the add location page
     private void addLocation() {
         createBtn = findViewById(R.id.createButton);
         createBtn.setOnClickListener(new View.OnClickListener() {

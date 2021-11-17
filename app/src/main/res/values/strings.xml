@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Location Finder</string>
+    <string name="add_location_btn">Add Location</string>
+    <string name="create_location_btn">Create</string>
+    <string name="back_btn">Back</string>
+</resources>

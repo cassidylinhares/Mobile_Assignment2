@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LocationActivity">
+
+    <Button
+        android:id="@+id/loc_backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        android:text="Back"/>
+
+    <!--    longitude-->
+    <TextView
+        android:id="@+id/loc_longitudeText"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/loc_longitudeEdit"
+        app:layout_constraintTop_toBottomOf="@id/loc_backButton"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="5dp"
+        android:gravity="center_vertical"
+        android:text="Longitude: "
+        android:textSize="15sp"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/loc_longitudeEdit"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/loc_longitudeText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/loc_longitudeText"
+        android:inputType="numberDecimal"/>
+
+    <!--    latitude-->
+    <TextView
+        android:id="@+id/loc_latitudeText"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        app:layout_constraintStart_toStartOf="@id/loc_longitudeText"
+        app:layout_constraintTop_toBottomOf="@id/loc_longitudeText"
+        android:layout_marginTop="24dp"
+        android:gravity="center_vertical"
+        android:text="Latitude: "
+        android:textSize="15sp"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/loc_latitudeEdit"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/loc_longitudeEdit"
+        app:layout_constraintTop_toTopOf="@id/loc_latitudeText"
+        android:inputType="numberDecimal"/>
+
+    <!--Address-->
+    <TextView
+        android:id="@+id/loc_addressText"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        app:layout_constraintStart_toStartOf="@id/loc_longitudeText"
+        app:layout_constraintTop_toBottomOf="@id/loc_latitudeText"
+        android:layout_marginTop="24dp"
+        android:gravity="center_vertical"
+        android:text="Address: "
+        android:textSize="15sp"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/loc_addressEdit"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/loc_longitudeEdit"
+        app:layout_constraintTop_toTopOf="@id/loc_addressText"
+        android:inputType="textMultiLine"/>
+
+    <Button
+        android:id="@+id/loc_saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loc_addressEdit"
+        app:layout_constraintEnd_toStartOf="@id/loc_deleteButton"
+        android:layout_marginTop="24dp"
+        android:text="Save"
+        android:backgroundTint="@color/green"/>
+    <Button
+        android:id="@+id/loc_deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/loc_saveButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/loc_saveButton"
+        android:text="Delete"
+        android:backgroundTint="@color/red"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,8 +27,12 @@ public class LocationModel {
     public LocationModel(String address) {
         this.address = address;
     }
+    public LocationModel(double latitude, double longitude) {
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
 
-    //get & set the address when given a latitude and longiitude
+    //get & set the address when given a latitude and longitude
     public void getAddressFromCoord(Context context) {
         try {
             Geocoder geocoder = new Geocoder(context, Locale.getDefault());

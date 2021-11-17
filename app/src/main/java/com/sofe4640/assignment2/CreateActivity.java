@@ -40,6 +40,8 @@ public class CreateActivity extends AppCompatActivity {
 
                     LocationModel newLoc = new LocationModel(addr);
                     newLoc.getCoordinates(CreateActivity.this); //gets the coordinates for the address provided
+                    newLoc.getAddressFromCoord(CreateActivity.this); //formats and corrects the address from coord provided
+                    addrEdit.setText(newLoc.getAddress());
 
                     // check if it inserted properly
                     boolean success = dbHandler.insert(newLoc);
